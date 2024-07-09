@@ -1,7 +1,7 @@
 #!/usr/bin/python3
-""" BasicCache module
+"""Basic Cache implementation Class
 """
-from base_caching import BaseCaching
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class BasicCache(BaseCaching):
@@ -11,18 +11,13 @@ class BasicCache(BaseCaching):
     Attributes:
         MAX_ITEMS: number of items that can be store in the cache
     """
-
-    """funct to append to the cache
-    """
     def put(self, key, item):
-        if key is None or item is None:
-            pass
+        """ Add an item in the cache
+        """
+        if key is not None and item is not None:
+            self.cache_data.update({key: item})
 
-        self.cache_data[key] = item
-
-    """funct to get a the value by the key
-    """
     def get(self, key):
-        if key is None or self.cache_data[key] is None:
-            return(None)
-        return(self.cache_data[key])
+        """ Get an item by key
+        """
+        return self.cache_data.get(key, None)
