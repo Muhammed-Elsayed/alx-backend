@@ -5,17 +5,23 @@ from base_caching import BaseCaching
 
 
 class BasicCache(BaseCaching):
-    """ BaseCache defines:
-      -
     """
-    """funct to append to the cache"""
+    A basic cache implementaion class
+
+    Attributes:
+        MAX_ITEMS: number of items that can be store in the cache
+    """
+
+    """funct to append to the cache
+    """
     def put(self, key, item):
         if key is None or item is None:
             pass
 
         self.cache_data[key] = item
 
-    "funct to get a the value by the key"
+    """funct to get a the value by the key
+    """
     def get(self, key):
         if key is None or self.cache_data[key] is None:
             return(None)
