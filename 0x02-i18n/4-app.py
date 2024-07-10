@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """web app"""
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_babel import Babel
 
 
@@ -17,10 +17,19 @@ app.config.from_object(Config)
 app.url_map.strict_slashes = False
 
 
+@babel.localeselector
+def get_locale() -> str:
+    """returns the best locale of the user"""
+    locale = request.args.get('locale', None)
+    if locale and locale in app.config["LANGUAGES"]:
+        return locale
+    return request.accept_languages.best_match(app.config["LANGUAGES"])
+
+
 @app.route("/")
-def index():
+def index() -> str:
     """the home page"""
-    return render_template('1-index.html')
+    return render_template('4-index.html')
 
 
 if __name__ == "__main__":
